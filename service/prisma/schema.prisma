@@ -1,0 +1,37 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model tb_sys_user {
+  id                          Int                 @unique @id @default(autoincrement())
+  code                        String?             @unique @default(cuid())
+  username                    String?             @unique @db.VarChar(125)
+  password                    String?             @db.VarChar(125)
+  firstname                   String?             @db.VarChar(125)
+  lastname                    String?             @db.VarChar(125)     
+  created_at                  DateTime?           @default(now())
+  created_by                  String?             @db.VarChar(125)
+  updated_at                  DateTime?           @updatedAt
+  updated_by                  String?             @db.VarChar(125)
+  deleted_at                  DateTime?           
+  deleted_by                  String?             @db.VarChar(125)
+}
+
+model tb_email_campaign {
+  id                          Int                 @unique @id @default(autoincrement())
+  code                        String?             @unique @default(cuid())
+  campaign                    String?             @db.VarChar(125)
+  subject                     String?             @db.VarChar(125)
+  contents                    String?             @db.VarChar(125)
+  created_at                  DateTime?           @default(now())
+  created_by                  String?             @db.VarChar(125)
+  updated_at                  DateTime?           @updatedAt
+  updated_by                  String?             @db.VarChar(125)
+  deleted_at                  DateTime?       
+  deleted_by                  String?             @db.VarChar(125)
+}
